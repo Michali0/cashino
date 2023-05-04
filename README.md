@@ -13,9 +13,9 @@ Aplikacja mobilna w języku Kotlin zawierająca gry polegające na losowości.
   -drawer menu z informacjami o aplikacji/autorami oraz możliwością przejścia do gier  
   
 ## Twórcy:  
-  Rosieński Michał  
-  Rogalski Krzysztof  
-  Wieczorek Mateusz  
-  Wincenciuk Jakub  
+  Rosieński Michał [Michali0](https://github.com/Michali0)  
+  Rogalski Krzysztof [kyUu7777](https://github.com/kyUu7777)   
+  Wieczorek Mateusz [naev733](https://github.com/naev733)  
+  Wincenciuk Jakub [jak-win](https://github.com/jak-win)  
 
 ### Wojskowa Akademia Techniczna WEL20EU1S1
