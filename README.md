@@ -1,16 +1,5 @@
 # Cashino
-Aplikacja mobilna w języku Kotlin zawierająca gry polegające na losowości.
-
-## Założenia:  
-  -rejestracja/logowanie połączone z bazą danych (np. Firebase)  
-  -indywidualne salda użytkowników zapisane w bazie (po wyczerpaniu możliwość uzupełnienia salda poprzez zagadki matematyczne/logiczne)  
-  -2/3 gry losowe:  
-	  1. ruletka  
-	  2. slots / automat  
-	  3. do uzgodnienia, może blackjack / bakarat / kości / 3 kubki (shell game)  
-  -strona główna po logowaniu z przyciskami do poszczególnych gier  
-  -balans wyświetlony w każdej grze oraz na głównej stronie  
-  -drawer menu z informacjami o aplikacji/autorami oraz możliwością przejścia do gier  
+Aplikacja mobilna w języku Kotlin zawierająca gry polegające na losowości: ruletka, slots, blackjack. Aplikacja zawierać będzie system rejestracji / logowania powiązany z bazą danych (Firebase), system salda użytkowników wyświetlany w grach, kartę główną z przyciskami kierującymi do poszczególnych gier oraz do karty z zagadkami matematycznymi / logicznymi umożliwiającymi uzupełnienie salda po wyczerpaniu. Stworzone zostaniu również drawer menu zawierające przekierowania do karty z informacjami o aplikacji oraz odnośniki do poszczególnych gier.
   
 ## Twórcy:  
   Rosieński Michał [Michali0](https://github.com/Michali0)  
