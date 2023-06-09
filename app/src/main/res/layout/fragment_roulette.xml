@@ -11,60 +11,98 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
+        android:layout_alignParentRight="true"
         android:text="@string/btnText"
-        android:layout_marginBottom="15dp"/>
-
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_marginBottom="15dp"
+        android:layout_marginRight="15dp"/>
 
         <TextView
+            android:id="@+id/wynikW"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Wynik:"
+            android:text="Wynik: "
             android:textSize="32sp"
-            android:layout_marginLeft="75dp"
-            android:layout_marginTop="55dp"/>
+            android:layout_marginLeft="15dp"
+            android:layout_above="@+id/pointerSpin"/>
         <TextView
         android:id="@+id/resultTv2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="55dp"
-        android:layout_marginLeft="30dp"
+        android:layout_toEndOf="@+id/wynikW"
+        android:layout_above="@+id/pointerSpin"
         android:textSize="32sp"
         android:text="--------"/>
-    </LinearLayout>
 
 
     <ImageView
         android:id="@+id/wheel2"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
+        android:layout_above="@id/wybKolor"
         android:src="@drawable/roulette_wheel" />
 
     <ImageView
+        android:id="@+id/pointerSpin"
         android:layout_width="25dp"
         android:layout_height="25dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/wheel2"
-        android:layout_marginBottom="-170dp"
         android:src="@drawable/roulette_pointer4"/>
-
     <TextView
+        android:id="@+id/saldoS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Saldo: "
+        android:textSize="20sp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginLeft="15dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"/>
+    <TextView
+        android:id="@+id/saldoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/saldoS"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="28dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20sp"
+        android:text="----------"/>
+    <TextView
+        android:id="@+id/stawkaS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Stawka: "
+        android:textSize="20sp"
+        android:layout_toStartOf="@id/stawkaText"
+        android:layout_marginBottom="28dp"
+        android:layout_alignParentBottom="true"/>
+    <EditText
+        android:id="@+id/stawkaText"
+        android:inputType="number"
+        android:layout_width="60dp"
+        android:layout_height="wrap_content"
+        android:layout_toStartOf="@id/spinBtn2"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="18dp"
+        android:layout_marginRight="20dp"
+        android:textSize="20sp"
+        android:text="20"/>
+    <TextView
+        android:id="@+id/wybKolor"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Wybierz kolor:"
         android:textSize="20sp"
-        android:layout_above="@id/spinBtn2"
-        android:layout_marginBottom="90dp"
+        android:layout_above="@id/linearBottom"
         android:layout_centerHorizontal="true"/>
     <LinearLayout
+        android:id="@+id/linearBottom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/spinBtn2">

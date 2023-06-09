@@ -33,25 +33,32 @@ class MainActivity : AppCompatActivity() {
         binding.btnLogin.setOnClickListener {
             val email = findViewById<EditText>(R.id.loginEt).text.toString()
             val pass = findViewById<EditText>(R.id.textPasswordEt).text.toString()
-            auth.signInWithEmailAndPassword(email, pass)
-                .addOnCompleteListener(this) { task ->
-                    if (task.isSuccessful) {
-                        Log.d(TAG, "signInWithEmail:success")
-                        val user = auth.currentUser
-                        findViewById<EditText>(R.id.textPasswordEt).text.clear()
-                        val intent = Intent (this@MainActivity, HomeActivity::class.java)
-                        startActivity(intent)
-                    } else {
-                        Log.w(TAG, "signInWithEmail:failure", task.exception)
-                        Toast.makeText(
-                            baseContext,
-                            "Nieudane logowanie",
-                            Toast.LENGTH_SHORT,
-                        ).show()
-                        findViewById<EditText>(R.id.textPasswordEt).text.clear()
+            if (email != "" && pass != "") {
+                auth.signInWithEmailAndPassword(email, pass)
+                    .addOnCompleteListener(this) { task ->
+                        if (task.isSuccessful) {
+                            Log.d(TAG, "signInWithEmail:success")
+                            val user = auth.currentUser
+                            findViewById<EditText>(R.id.textPasswordEt).text.clear()
+                            val intent = Intent(this@MainActivity, HomeActivity::class.java)
+                            startActivity(intent)
+                        } else {
+                            Log.w(TAG, "signInWithEmail:failure", task.exception)
+                            Toast.makeText(
+                                baseContext,
+                                "Nieudane logowanie",
+                                Toast.LENGTH_SHORT,
+                            ).show()
+                            findViewById<EditText>(R.id.textPasswordEt).text.clear()
+                        }
                     }
-                }
-
+            } else {
+                Toast.makeText(
+                    baseContext,
+                    "Puste pole logowania",
+                    Toast.LENGTH_SHORT,
+                ).show()
+            }
         }
     }
 }

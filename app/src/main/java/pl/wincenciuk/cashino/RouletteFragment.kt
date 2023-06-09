@@ -10,9 +10,13 @@ import android.view.animation.Animation
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.RotateAnimation
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.*
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 
@@ -30,12 +34,15 @@ class RouletteFragment : Fragment() {
     private val RANDOM = Random()
     private var degree = 0
     private var degreeOld = 0
+    private var saldo = 0
 
     private val HALF_SECTOR = 360f / 37f / 2f
 
     private lateinit var spinBtn: Button
     private lateinit var resultTv: TextView
+    private lateinit var saldoT: TextView
     private lateinit var wheel: ImageView
+    private lateinit var stawka: EditText
 
     private var selectedColor: String? = null
 
@@ -47,6 +54,8 @@ class RouletteFragment : Fragment() {
         val redBtn: Button = view.findViewById(R.id.btnRed)
         val greenBtn: Button = view.findViewById(R.id.btnGreen)
 
+        readSaldo()
+
         blackBtn.setOnClickListener { selectColor("BLACK") }
         redBtn.setOnClickListener { selectColor("RED") }
         greenBtn.setOnClickListener { selectColor("GREEN") }
@@ -54,6 +63,8 @@ class RouletteFragment : Fragment() {
         spinBtn = view.findViewById(R.id.spinBtn2)
         resultTv = view.findViewById(R.id.resultTv2)
         wheel = view.findViewById(R.id.wheel2)
+        saldoT = view.findViewById(R.id.saldoText)
+        stawka = view.findViewById(R.id.stawkaText)
 
         spinBtn.setOnClickListener { spin(it) }
 
@@ -66,6 +77,12 @@ class RouletteFragment : Fragment() {
     }
 
     private fun spin(v: View) {
+        val stawkaA = stawka.text.toString().toInt()
+        readSaldo()
+        if (stawkaA > saldo || stawkaA < 1) {
+            Toast.makeText(requireContext(), "Niepoprawna stawka", Toast.LENGTH_SHORT).show()
+            return
+        }
         if (selectedColor.isNullOrEmpty()) {
             Toast.makeText(requireContext(), "Proszę najpierw wybrać kolor", Toast.LENGTH_SHORT).show()
             return
@@ -93,9 +110,16 @@ class RouletteFragment : Fragment() {
 
                 if (selectedColor.equals(resultTv.text.toString().split(" ")[0], ignoreCase = true)) {
                     Toast.makeText(requireContext(), "Wygrałeś!", Toast.LENGTH_SHORT).show()
+                    if (resultTv.text.toString().split(" ")[0] == "GREEN") {
+                        writeSaldo(5*stawkaA)
+                    } else {
+                        writeSaldo(2*stawkaA)
+                    }
                 } else {
                     Toast.makeText(requireContext(), "Przegrałeś, spróbuj jeszcze raz!", Toast.LENGTH_SHORT).show()
+                    writeSaldo(-stawkaA)
                 }
+                readSaldo()
             }
 
             override fun onAnimationRepeat(animation: Animation) {}
@@ -120,5 +144,35 @@ class RouletteFragment : Fragment() {
         } while (text == null && i < sectors.size)
 
         return text
+    }
+
+    fun readSaldo() {
+        val database = FirebaseDatabase.getInstance("https://cashino-rrww-default-rtdb.europe-west1.firebasedatabase.app")
+        val user = Firebase.auth.currentUser
+        val ref = user?.let { database.getReference(it.uid) }
+
+        if (ref != null) {
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    saldo = snapshot.getValue(Int::class.java)!!
+                    saldoT.text = saldo.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Błąd odczytu z bazy",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            })
+        }
+    }
+
+    fun writeSaldo(stawka: Int) {
+        val database =
+            FirebaseDatabase.getInstance("https://cashino-rrww-default-rtdb.europe-west1.firebasedatabase.app")
+        val user = Firebase.auth.currentUser
+        user?.let { database.getReference(it.uid) }?.setValue(saldo + stawka)
     }
 }
