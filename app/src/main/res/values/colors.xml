@@ -9,5 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="prim">#C11F1F</color>
     <color name="second">#5E5D5D</color>
+    <color name="red">#E33C3C</color>
+    <color name="green">#39CD33</color>
 
 </resources>

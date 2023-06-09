@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RouletteFragment">
+
+    <Button
+        android:id="@+id/spinBtn2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:text="@string/btnText"
+        android:layout_marginBottom="15dp"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Wynik:"
+            android:textSize="32sp"
+            android:layout_marginLeft="80dp"
+            android:layout_marginTop="55dp"/>
+        <TextView
+        android:id="@+id/resultTv2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="55dp"
+        android:layout_marginLeft="30dp"
+        android:textSize="32sp"
+        android:text=""/>
+    </LinearLayout>
+
+
+    <ImageView
+        android:id="@+id/wheel2"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:scaleType="centerInside"
+        android:src="@drawable/roulette_wheel"
+        android:adjustViewBounds="true"/>
+
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="25dp"
+        android:layout_centerHorizontal="true"
+        android:layout_above="@id/wheel2"
+        android:layout_marginBottom="-190dp"
+        android:src="@drawable/roulette_pointer4"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Wybierz kolor:"
+        android:textSize="20sp"
+        android:layout_above="@id/spinBtn2"
+        android:layout_marginBottom="90dp"
+        android:layout_centerHorizontal="true"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/spinBtn2">
+
+        <Button
+            android:id="@+id/btnRed"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:text="czerwony"
+            android:backgroundTint="@color/red"/>
+        <Button
+            android:id="@+id/btnBlack"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:text="Czarny"
+            android:backgroundTint="@color/black" />
+        <Button
+            android:id="@+id/btnGreen"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_margin="10dp"
+            android:text="Zielony"
+            android:backgroundTint="@color/green"/>
+
+    </LinearLayout>
+
+
+</RelativeLayout>

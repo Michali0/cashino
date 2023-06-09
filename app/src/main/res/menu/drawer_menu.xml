@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">>
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/drawer_ruletka"
+            android:icon="@drawable/baseline_roulette"
+            android:title="Roulette"/>
+        <item
+            android:id="@+id/drawer_notes"
+            android:icon="@drawable/baseline_blackjack"
+            android:title="Blackjack"/>
+        <item
+            android:id="@+id/drawer_slots"
+            android:icon="@drawable/baseline_slots"
+            android:title="Slots" />
+
+    </group>
+
+</menu>
