@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">Cashino</string>
+    <string name="main_activity_app_name">Cashino</string>
+    <string name="textViewDescription">Sprawdź swoje szczęście!</string>
+    <string name="textViewSchool">Wojskowa Akademia Techniczna</string>
+    <string name="btnText">Zakręć!</string>
+    <string name="loginEt">Login</string>
+    <string name="passwordEt">Hasło</string>
+    <string name="btnLogin">Zaloguj</string>
+    <string name="open_navigation_bar">Open navigation bar</string>
+    <string name="close_navigation_bar">Close navigation bar</string>
+</resources>
