@@ -44,9 +44,9 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:src="@drawable/roulette_wheel"
-        android:adjustViewBounds="true"/>
+        android:src="@drawable/roulette_wheel" />
 
     <ImageView
         android:layout_width="25dp"
