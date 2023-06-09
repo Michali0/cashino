@@ -43,6 +43,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         when (item.itemId) {
             R.id.drawer_ruletka -> supportFragmentManager.beginTransaction().replace(fragmentContainer, RouletteFragment()).commit()
             R.id.drawer_slots -> supportFragmentManager.beginTransaction().replace(fragmentContainer, FragmentSlots()).commit()
+            R.id.drawer_black -> supportFragmentManager.beginTransaction().replace(fragmentContainer, BlackJackFragment()).commit()
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)

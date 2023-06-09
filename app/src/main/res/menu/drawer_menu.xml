@@ -9,7 +9,7 @@
             android:icon="@drawable/baseline_roulette"
             android:title="Roulette"/>
         <item
-            android:id="@+id/drawer_notes"
+            android:id="@+id/drawer_black"
             android:icon="@drawable/baseline_blackjack"
             android:title="Blackjack"/>
         <item
