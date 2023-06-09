@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "8185228133",
+    "project_id": "cashino-rrww",
+    "storage_bucket": "cashino-rrww.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:8185228133:android:a5e4e3428031297bf04f8c",
+        "android_client_info": {
+          "package_name": "pl.wincenciuk.cashino"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "8185228133-8rkq8o5dumc7tqenuvr5n2fb3ltggnrf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCUcbCawwvgm0cJniQk_j-UDw7FnXhDLoY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "8185228133-8rkq8o5dumc7tqenuvr5n2fb3ltggnrf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
