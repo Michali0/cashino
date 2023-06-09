@@ -24,7 +24,7 @@
             android:layout_height="wrap_content"
             android:text="Wynik:"
             android:textSize="32sp"
-            android:layout_marginLeft="80dp"
+            android:layout_marginLeft="75dp"
             android:layout_marginTop="55dp"/>
         <TextView
         android:id="@+id/resultTv2"
@@ -33,7 +33,7 @@
         android:layout_marginTop="55dp"
         android:layout_marginLeft="30dp"
         android:textSize="32sp"
-        android:text=""/>
+        android:text="--------"/>
     </LinearLayout>
 
 
@@ -53,7 +53,7 @@
         android:layout_height="25dp"
         android:layout_centerHorizontal="true"
         android:layout_above="@id/wheel2"
-        android:layout_marginBottom="-190dp"
+        android:layout_marginBottom="-170dp"
         android:src="@drawable/roulette_pointer4"/>
 
     <TextView
