@@ -29,5 +29,11 @@
         android:layout_below="@id/editTextAnswer"
         android:layout_marginTop="16dp"
         android:text="Sprawdź odpowiedź" />
-
+    <Button
+        android:id="@+id/buttonReset"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/buttonCheck"
+        android:layout_marginTop="16dp"
+        android:text="Reset" />
 </RelativeLayout>

@@ -14,13 +14,14 @@ class SaldoFragment : Fragment() {
     private lateinit var textViewEquation: TextView
     private lateinit var editTextAnswer: EditText
     private lateinit var buttonCheck: Button
+    private lateinit var buttonReset: Button
 
     private var liczba1: Int = 0
     private var liczba2: Int = 0
     private var liczba3: Int = 0
     private var znak1: String = ""
     private var znak2: String = ""
-
+    private var isButtonClicked = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -28,17 +29,24 @@ class SaldoFragment : Fragment() {
         return inflater.inflate(R.layout.fragment_saldo, container, false)
     }
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         textViewEquation = view.findViewById(R.id.textViewEquation)
         editTextAnswer = view.findViewById(R.id.editTextAnswer)
         buttonCheck = view.findViewById(R.id.buttonCheck)
+        buttonReset = view.findViewById(R.id.buttonReset)
 
         generateEquation()
 
         buttonCheck.setOnClickListener {
             checkAnswer()
+            isButtonClicked = true
+            buttonCheck.isEnabled = false
+        }
+        buttonReset.setOnClickListener {
+            resetFragment()
         }
     }
 
@@ -105,4 +113,11 @@ class SaldoFragment : Fragment() {
 
         return wynik
     }
+    private fun resetFragment() {
+        isButtonClicked = false
+        buttonCheck.isEnabled = true
+        editTextAnswer.text.clear()
+        generateEquation()
+    }
+
 }
