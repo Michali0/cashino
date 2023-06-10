@@ -6,6 +6,11 @@
     <string name="btnText">Zakręć!</string>
     <string name="loginEt">Login</string>
     <string name="menu_welcome">Witaj!</string>
+    <string name="main_menu_about">O programie</string>
+    <string name="about_activity_app_name">Cashino</string>
+    <string name="about_activity_version">Wersja 1.0</string>
+    <string name="about_activity_description">Wojskowa Akademia Techniczna</string>
+    <string name="about_activity_authors">Autorzy:</string>
     <string name="passwordEt">Hasło</string>
     <string name="btnLogin">Zaloguj</string>
     <string name="open_navigation_bar">Open navigation bar</string>

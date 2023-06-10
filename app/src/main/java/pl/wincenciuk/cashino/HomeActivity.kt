@@ -45,6 +45,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             R.id.drawer_ruletka -> supportFragmentManager.beginTransaction().replace(fragmentContainer, RouletteFragment()).commit()
             R.id.drawer_slots -> supportFragmentManager.beginTransaction().replace(fragmentContainer, FragmentSlots()).commit()
             R.id.drawer_black -> supportFragmentManager.beginTransaction().replace(fragmentContainer, BlackJackFragment()).commit()
+            R.id.drawer_about -> supportFragmentManager.beginTransaction().replace(fragmentContainer, AboutFragment()).commit()
         }
 
         drawerLayout.closeDrawer(GravityCompat.START)

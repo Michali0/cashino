@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:showIn="navigation_view">>
+    tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
 
@@ -9,19 +9,35 @@
             android:id="@+id/drawer_menu"
             android:icon="@drawable/baseline_menu"
             android:title="Menu"/>
-        <item
+
+    </group>
+
+    <item android:title="Gry">
+        <menu>
+            <item
             android:id="@+id/drawer_ruletka"
             android:icon="@drawable/baseline_roulette"
             android:title="Roulette"/>
-        <item
+            <item
             android:id="@+id/drawer_black"
             android:icon="@drawable/baseline_blackjack"
             android:title="Blackjack"/>
-        <item
+            <item
             android:id="@+id/drawer_slots"
             android:icon="@drawable/baseline_slots"
             android:title="Slots" />
+        </menu>
+    </item>
 
-    </group>
+    <item android:title="Dodatkowe informacje">
+        <menu>
+            <item
+            android:id="@+id/drawer_about"
+            android:icon="@drawable/baseline_about"
+            android:title="O programie" />
+
+        </menu>
+    </item>
+
 
 </menu>
