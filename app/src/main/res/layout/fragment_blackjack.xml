@@ -7,6 +7,47 @@
     android:padding="16dp">
 
     <TextView
+        android:id="@+id/saldoS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/saldoS"
+        android:textSize="20sp"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_above="@+id/stawkaS"
+        android:layout_alignParentStart="true"/>
+    <TextView
+        android:id="@+id/saldoText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@+id/saldoS"
+        android:layout_above="@+id/stawkaS"
+        android:layout_marginBottom="28dp"
+        android:layout_marginEnd="20dp"
+        android:textSize="20sp"
+        android:text="-------------"/>
+    <TextView
+        android:id="@+id/stawkaS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/stawkaS"
+        android:textSize="20sp"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="28dp"
+        android:layout_marginStart="20dp"
+        android:layout_above="@+id/textViewResult"/>
+    <EditText
+        android:id="@+id/stawkaText"
+        android:inputType="number"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/stawkaS"
+        android:layout_above="@+id/textViewResult"
+        android:layout_marginBottom="18dp"
+        android:textSize="20sp"
+        android:text="@string/defStawka"/>
+
+    <TextView
         android:id="@+id/textViewResult"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

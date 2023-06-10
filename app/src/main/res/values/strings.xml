@@ -17,4 +17,8 @@
     <string name="close_navigation_bar">Close navigation bar</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="btnRegister">Zarejestruj</string>
+    <string name="saldoS">Saldo: </string>
+    <string name="stawkaS">Stawka: </string>
+    <string name="defStawka">20</string>
 </resources>

@@ -94,16 +94,16 @@ class BlackJackFragment : Fragment() {
     }
 
     private fun stand() {
-        dealerHand[1] = drawCard()
+        dealerHand.add(drawCard())
+
+        while (calculateHandValue(dealerHand) < 17) {
+            dealerHand.add(drawCard())
+        }
 
         textViewResult.text =
             "Ręka Gracza: ${playerHand.joinToString()} \n" +
                     "Ręka Krupiera: ${dealerHand.joinToString()} \n" +
                     "Ręka Gracza suma: ${calculateHandValue(playerHand)}"
-
-        while (calculateHandValue(dealerHand) < 17) {
-            dealerHand.add(drawCard())
-        }
 
         val dealerValue = calculateHandValue(dealerHand)
         val playerValue = calculateHandValue(playerHand)
