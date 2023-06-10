@@ -22,8 +22,9 @@
             android:layout_height="wrap_content"
             android:text="Wynik: "
             android:textSize="32sp"
-            android:layout_marginLeft="15dp"
-            android:layout_above="@+id/pointerSpin"/>
+            android:layout_marginLeft="85dp"
+            android:layout_above="@+id/pointerSpin"
+            android:layout_marginBottom="30dp"/>
         <TextView
         android:id="@+id/resultTv2"
         android:layout_width="wrap_content"
@@ -31,6 +32,7 @@
         android:layout_toEndOf="@+id/wynikW"
         android:layout_above="@+id/pointerSpin"
         android:textSize="32sp"
+            android:layout_marginBottom="30dp"
         android:text="--------"/>
 
 
@@ -41,6 +43,7 @@
         android:layout_centerInParent="true"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
+        android:layout_marginBottom="30dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
         android:layout_above="@id/wybKolor"

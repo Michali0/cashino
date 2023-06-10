@@ -4,6 +4,11 @@
     tools:showIn="navigation_view">>
 
     <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/drawer_menu"
+            android:icon="@drawable/baseline_menu"
+            android:title="Menu"/>
         <item
             android:id="@+id/drawer_ruletka"
             android:icon="@drawable/baseline_roulette"
