@@ -83,6 +83,7 @@ class RouletteFragment : Fragment() {
             Toast.makeText(requireContext(), "Niepoprawna stawka", Toast.LENGTH_SHORT).show()
             return
         }
+        writeSaldo(-stawkaA)
         if (selectedColor.isNullOrEmpty()) {
             Toast.makeText(requireContext(), "Proszę najpierw wybrać kolor", Toast.LENGTH_SHORT).show()
             return
@@ -111,13 +112,12 @@ class RouletteFragment : Fragment() {
                 if (selectedColor.equals(resultTv.text.toString().split(" ")[0], ignoreCase = true)) {
                     Toast.makeText(requireContext(), "Wygrałeś!", Toast.LENGTH_SHORT).show()
                     if (resultTv.text.toString().split(" ")[0] == "GREEN") {
-                        writeSaldo(5*stawkaA)
+                        writeSaldo(6*stawkaA)
                     } else {
-                        writeSaldo(stawkaA)
+                        writeSaldo(2*stawkaA)
                     }
                 } else {
                     Toast.makeText(requireContext(), "Przegrałeś, spróbuj jeszcze raz!", Toast.LENGTH_SHORT).show()
-                    writeSaldo(-stawkaA)
                 }
                 readSaldo()
             }

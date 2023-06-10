@@ -80,6 +80,7 @@ class BlackJackFragment : Fragment() {
             return
         }
         stawka.isEnabled = false
+        writeSaldo(-stawkaA)
         playerHand.clear()
         dealerHand.clear()
 
@@ -95,6 +96,11 @@ class BlackJackFragment : Fragment() {
         buttonHit.isEnabled = true
         buttonStand.isEnabled = true
         buttonDeal.isEnabled = false
+
+        val handValue = calculateHandValue(playerHand)
+        if (handValue == 21) {
+            stand()
+        }
     }
 
     private fun hit() {
@@ -107,46 +113,55 @@ class BlackJackFragment : Fragment() {
                     "Ręka Gracza suma: ${calculateHandValue(playerHand)}"
 
         val handValue = calculateHandValue(playerHand)
-        if (handValue == 21) {
+        val dealerValue = calculateHandValue(dealerHand)
+        if (handValue == 21 && dealerValue == 21) {
+            textViewResult.append("\nRemis")
+            endGame()
+        } else if (handValue == 21) {
             textViewResult.append("\nBlackjack! Wygrałeś.")
-            writeSaldo(stawkaA)
+            writeSaldo(2*stawkaA)
             endGame()
         } else if (handValue > 21) {
             textViewResult.append("\nSuma > 21! Przegrałeś.")
-            writeSaldo(-stawkaA)
             endGame()
         }
     }
 
     private fun stand() {
         val stawkaA = stawka.text.toString().toInt()
-        dealerHand.add(drawCard())
-
-        while (calculateHandValue(dealerHand) < 17) {
-            dealerHand.add(drawCard())
-        }
-
-        textViewResult.text =
-            "Ręka Gracza: ${playerHand.joinToString()} \n" +
-                    "Ręka Krupiera: ${dealerHand.joinToString()} \n" +
-                    "Ręka Gracza suma: ${calculateHandValue(playerHand)}"
-
-        val dealerValue = calculateHandValue(dealerHand)
+        var dealerValue = calculateHandValue(dealerHand)
         val playerValue = calculateHandValue(playerHand)
-
-        if (dealerValue > 21) {
-            textViewResult.append("\nKrupier suma > 21! Wygrałeś.")
-            writeSaldo(stawkaA)
-        } else if (dealerValue > playerValue) {
+        if (dealerValue == 21) {
             textViewResult.append("\nWygrywa Krupier. Przegrałeś.")
             writeSaldo(-stawkaA)
-        } else if (dealerValue < playerValue) {
-            textViewResult.append("\nWygrałeś.")
-            writeSaldo(stawkaA)
         } else {
-            textViewResult.append("\nRemis")
-        }
+            while (dealerValue < playerValue) {
+                dealerHand.add(drawCard())
+                dealerValue = calculateHandValue(dealerHand)
+            }
+            if (dealerValue == playerValue && dealerValue < 17) {
+                dealerHand.add(drawCard())
+                dealerValue = calculateHandValue(dealerHand)
+            }
 
+            textViewResult.text =
+                "Ręka Gracza: ${playerHand.joinToString()} \n" +
+                        "Ręka Krupiera: ${dealerHand.joinToString()} \n" +
+                        "Ręka Gracza suma: ${calculateHandValue(playerHand)}"
+
+            if (dealerValue > 21) {
+                textViewResult.append("\nKrupier suma > 21! Wygrałeś.")
+                writeSaldo(2*stawkaA)
+            } else if (dealerValue > playerValue) {
+                textViewResult.append("\nWygrywa Krupier. Przegrałeś.")
+            } else if (dealerValue < playerValue) {
+                textViewResult.append("\nWygrałeś.")
+                writeSaldo(2*stawkaA)
+            } else {
+                textViewResult.append("\nRemis")
+                writeSaldo(stawkaA)
+            }
+        }
         endGame()
     }
 

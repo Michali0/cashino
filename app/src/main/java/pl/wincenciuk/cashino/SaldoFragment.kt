@@ -7,7 +7,14 @@ import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import kotlin.random.Random
 
 class SaldoFragment : Fragment() {
@@ -15,7 +22,9 @@ class SaldoFragment : Fragment() {
     private lateinit var editTextAnswer: EditText
     private lateinit var buttonCheck: Button
     private lateinit var buttonReset: Button
+    private lateinit var saldoT: TextView
 
+    private var saldo = 0
     private var liczba1: Int = 0
     private var liczba2: Int = 0
     private var liczba3: Int = 0
@@ -37,6 +46,9 @@ class SaldoFragment : Fragment() {
         editTextAnswer = view.findViewById(R.id.editTextAnswer)
         buttonCheck = view.findViewById(R.id.buttonCheck)
         buttonReset = view.findViewById(R.id.buttonReset)
+        saldoT = view.findViewById(R.id.saldoText)
+
+        readSaldo()
 
         generateEquation()
 
@@ -72,11 +84,14 @@ class SaldoFragment : Fragment() {
             val correctAnswer = Equation()
 
             if (userAnswer == correctAnswer) {
-                textViewEquation.text = "Prawidłowa odpowiedź! Saldo uzupełnione."
+                textViewEquation.text = "Prawidłowa odpowiedź! Saldo uzupełnione o 100."
+                readSaldo()
+                writeSaldo(100)
             } else {
                 textViewEquation.text = "Niepoprawna odpowiedź. Poprawna odpowiedź to $correctAnswer."
             }
         }
+        readSaldo()
     }
 
     private fun Equation(): Int {
@@ -118,6 +133,35 @@ class SaldoFragment : Fragment() {
         buttonCheck.isEnabled = true
         editTextAnswer.text.clear()
         generateEquation()
+    }
+
+    fun readSaldo() {
+        val database = FirebaseDatabase.getInstance("https://cashino-rrww-default-rtdb.europe-west1.firebasedatabase.app")
+        val user = Firebase.auth.currentUser
+        val ref = user?.let { database.getReference(it.uid) }
+
+        if (ref != null) {
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    saldo = snapshot.getValue(Int::class.java)!!
+                    saldoT.text = saldo.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Błąd odczytu z bazy",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            })
+        }
+    }
+    fun writeSaldo(stawka: Int) {
+        val database =
+            FirebaseDatabase.getInstance("https://cashino-rrww-default-rtdb.europe-west1.firebasedatabase.app")
+        val user = Firebase.auth.currentUser
+        user?.let { database.getReference(it.uid) }?.setValue(saldo + stawka)
     }
 
 }

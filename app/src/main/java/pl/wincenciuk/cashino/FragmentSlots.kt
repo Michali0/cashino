@@ -66,14 +66,14 @@ class FragmentSlots : Fragment() {
 
                 if (wheel1.currentIndex == wheel2.currentIndex && wheel2.currentIndex == wheel3.currentIndex) {
                     msg.text = "Gratulację, wygrałeś dużą nagrodę!"
-                    writeSaldo(3*stawkaA)
+                    writeSaldo(4*stawkaA)
                 } else if (wheel1.currentIndex == wheel2.currentIndex || wheel2.currentIndex == wheel3.currentIndex
                     || wheel1.currentIndex == wheel3.currentIndex
                 ) {
                     msg.text = "Mała nagroda"
+                    writeSaldo(stawkaA)
                 } else {
                     msg.text = "Przegrałeś! Spróbuj ponownie"
-                    writeSaldo(-stawkaA)
                 }
 
                 btn.text = "Start"
@@ -88,6 +88,7 @@ class FragmentSlots : Fragment() {
                     Toast.makeText(requireContext(), "Niepoprawna stawka", Toast.LENGTH_SHORT).show()
                 } else {
                     stawka.isEnabled = false
+                    writeSaldo(-stawkaA)
                     wheel1 = Wheel(object : Wheel.WheelListener {
                         override fun newImage(img: Int) {
                             activity?.runOnUiThread {
