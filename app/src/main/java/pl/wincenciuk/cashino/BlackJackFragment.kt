@@ -5,8 +5,16 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
 import java.util.*
 
 class BlackJackFragment : Fragment() {
@@ -14,6 +22,10 @@ class BlackJackFragment : Fragment() {
     private lateinit var buttonDeal: Button
     private lateinit var buttonHit: Button
     private lateinit var buttonStand: Button
+    private lateinit var saldoT: TextView
+    private lateinit var stawka: EditText
+
+    private var saldo = 0
 
     private val cardColors = arrayOf("♠", "♣", "♦", "♥")
     private val cardNumbers = arrayOf("A", "2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K")
@@ -36,7 +48,10 @@ class BlackJackFragment : Fragment() {
         buttonDeal = view.findViewById(R.id.buttonDeal)
         buttonHit = view.findViewById(R.id.buttonHit)
         buttonStand = view.findViewById(R.id.buttonStand)
+        saldoT = view.findViewById(R.id.saldoText)
+        stawka = view.findViewById(R.id.stawkaText)
 
+        readSaldo()
         resetDeck()
 
         buttonDeal.setOnClickListener { deal() }
@@ -58,6 +73,13 @@ class BlackJackFragment : Fragment() {
     }
 
     private fun deal() {
+        val stawkaA = stawka.text.toString().toInt()
+        readSaldo()
+        if (stawkaA > saldo || stawkaA < 1) {
+            Toast.makeText(requireContext(), "Niepoprawna stawka", Toast.LENGTH_SHORT).show()
+            return
+        }
+        stawka.isEnabled = false
         playerHand.clear()
         dealerHand.clear()
 
@@ -76,6 +98,7 @@ class BlackJackFragment : Fragment() {
     }
 
     private fun hit() {
+        val stawkaA = stawka.text.toString().toInt()
         playerHand.add(drawCard())
 
         textViewResult.text =
@@ -86,14 +109,17 @@ class BlackJackFragment : Fragment() {
         val handValue = calculateHandValue(playerHand)
         if (handValue == 21) {
             textViewResult.append("\nBlackjack! Wygrałeś.")
+            writeSaldo(stawkaA)
             endGame()
         } else if (handValue > 21) {
             textViewResult.append("\nSuma > 21! Przegrałeś.")
+            writeSaldo(-stawkaA)
             endGame()
         }
     }
 
     private fun stand() {
+        val stawkaA = stawka.text.toString().toInt()
         dealerHand.add(drawCard())
 
         while (calculateHandValue(dealerHand) < 17) {
@@ -110,10 +136,13 @@ class BlackJackFragment : Fragment() {
 
         if (dealerValue > 21) {
             textViewResult.append("\nKrupier suma > 21! Wygrałeś.")
+            writeSaldo(stawkaA)
         } else if (dealerValue > playerValue) {
             textViewResult.append("\nWygrywa Krupier. Przegrałeś.")
+            writeSaldo(-stawkaA)
         } else if (dealerValue < playerValue) {
             textViewResult.append("\nWygrałeś.")
+            writeSaldo(stawkaA)
         } else {
             textViewResult.append("\nRemis")
         }
@@ -154,8 +183,40 @@ class BlackJackFragment : Fragment() {
     }
 
     private fun endGame() {
+        readSaldo()
+        stawka.isEnabled = true
         buttonHit.isEnabled = false
         buttonStand.isEnabled = false
         buttonDeal.isEnabled = true
+    }
+
+    fun readSaldo() {
+        val database = FirebaseDatabase.getInstance("https://cashino-rrww-default-rtdb.europe-west1.firebasedatabase.app")
+        val user = Firebase.auth.currentUser
+        val ref = user?.let { database.getReference(it.uid) }
+
+        if (ref != null) {
+            ref.addValueEventListener(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    saldo = snapshot.getValue(Int::class.java)!!
+                    saldoT.text = saldo.toString()
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Błąd odczytu z bazy",
+                        Toast.LENGTH_SHORT,
+                    ).show()
+                }
+            })
+        }
+    }
+
+    fun writeSaldo(stawka: Int) {
+        val database =
+            FirebaseDatabase.getInstance("https://cashino-rrww-default-rtdb.europe-west1.firebasedatabase.app")
+        val user = Firebase.auth.currentUser
+        user?.let { database.getReference(it.uid) }?.setValue(saldo + stawka)
     }
 }

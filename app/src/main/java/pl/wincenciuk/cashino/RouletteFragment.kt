@@ -113,7 +113,7 @@ class RouletteFragment : Fragment() {
                     if (resultTv.text.toString().split(" ")[0] == "GREEN") {
                         writeSaldo(5*stawkaA)
                     } else {
-                        writeSaldo(2*stawkaA)
+                        writeSaldo(stawkaA)
                     }
                 } else {
                     Toast.makeText(requireContext(), "Przegrałeś, spróbuj jeszcze raz!", Toast.LENGTH_SHORT).show()
