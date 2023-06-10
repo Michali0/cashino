@@ -11,7 +11,15 @@
             android:title="Menu"/>
 
     </group>
+    <item android:title="Saldo">
+        <menu>
+            <item
+                android:id="@+id/drawer_saldo"
+                android:icon="@drawable/baseline_saldo"
+                android:title="Dodaj Saldo"/>
 
+        </menu>
+    </item>
     <item android:title="Gry">
         <menu>
             <item

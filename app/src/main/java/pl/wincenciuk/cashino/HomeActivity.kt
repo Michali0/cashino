@@ -42,6 +42,7 @@ class HomeActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.drawer_menu -> supportFragmentManager.beginTransaction().replace(fragmentContainer, MenuFragment()).commit()
+            R.id.drawer_saldo -> supportFragmentManager.beginTransaction().replace(fragmentContainer, SaldoFragment()).commit()
             R.id.drawer_ruletka -> supportFragmentManager.beginTransaction().replace(fragmentContainer, RouletteFragment()).commit()
             R.id.drawer_slots -> supportFragmentManager.beginTransaction().replace(fragmentContainer, FragmentSlots()).commit()
             R.id.drawer_black -> supportFragmentManager.beginTransaction().replace(fragmentContainer, BlackJackFragment()).commit()
