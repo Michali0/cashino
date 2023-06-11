@@ -60,27 +60,31 @@ class FragmentSlots : Fragment() {
         btn.setOnClickListener {
             if (isStarted) {
                 val stawkaA = stawka.text.toString().toInt()
-                wheel1.stopWheel()
-                wheel2.stopWheel()
-                wheel3.stopWheel()
+                Thread {
+                    Thread.sleep(400)
+                    activity?.runOnUiThread {
+                        wheel1.stopWheel()
+                        wheel2.stopWheel()
+                        wheel3.stopWheel()
 
-                if (wheel1.currentIndex == wheel2.currentIndex && wheel2.currentIndex == wheel3.currentIndex) {
-                    msg.text = "Gratulację, wygrałeś dużą nagrodę!"
-                    writeSaldo(4*stawkaA)
-                } else if (wheel1.currentIndex == wheel2.currentIndex || wheel2.currentIndex == wheel3.currentIndex
-                    || wheel1.currentIndex == wheel3.currentIndex
-                ) {
-                    msg.text = "Mała nagroda"
-                    writeSaldo(stawkaA)
-                } else {
-                    msg.text = "Przegrałeś! Spróbuj ponownie"
-                }
+                        if (wheel1.currentIndex == wheel2.currentIndex && wheel2.currentIndex == wheel3.currentIndex) {
+                            msg.text = "Gratulację, wygrałeś dużą nagrodę!"
+                            writeSaldo(4*stawkaA)
+                        } else if (wheel1.currentIndex == wheel2.currentIndex || wheel2.currentIndex == wheel3.currentIndex
+                            || wheel1.currentIndex == wheel3.currentIndex
+                        ) {
+                            msg.text = "Mała nagroda"
+                            writeSaldo(stawkaA)
+                        } else {
+                            msg.text = "Przegrałeś! Spróbuj ponownie"
+                        }
 
-                btn.text = "Start"
-                isStarted = false
-                stawka.isEnabled = true
-                readSaldo()
-
+                        btn.text = "Start"
+                        isStarted = false
+                        stawka.isEnabled = true
+                        readSaldo()
+                    }
+                }.start()
             } else {
                 val stawkaA = stawka.text.toString().toInt()
                 readSaldo()
