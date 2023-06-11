@@ -116,6 +116,7 @@ class BlackJackFragment : Fragment() {
         val dealerValue = calculateHandValue(dealerHand)
         if (handValue == 21 && dealerValue == 21) {
             textViewResult.append("\nRemis")
+            writeSaldo(stawkaA)
             endGame()
         } else if (handValue == 21) {
             textViewResult.append("\nBlackjack! Wygrałeś.")
@@ -133,7 +134,6 @@ class BlackJackFragment : Fragment() {
         val playerValue = calculateHandValue(playerHand)
         if (dealerValue == 21) {
             textViewResult.append("\nWygrywa Krupier. Przegrałeś.")
-            writeSaldo(-stawkaA)
         } else {
             while (dealerValue < playerValue) {
                 dealerHand.add(drawCard())
